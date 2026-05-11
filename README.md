@@ -145,7 +145,7 @@ why it violates 3NF.
 **Question 1.3:** Compute the attribute closure $\{\mathrm{OrderNo}\}^+$ using
 your FD list. Is `OrderNo` alone a superkey of the flat table?
 
-> *Your answer:*
+> *Your answer:*OrderNo is not a superke, because its cllosure does not include ItemNo, Mechld or MechN.
 
 ---
 
