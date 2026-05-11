@@ -217,20 +217,40 @@ though the customer is also reachable via the vehicle's licence plate?
 Describe a realistic scenario where the direct link `order → customer` is
 necessary.
 
-> *Your answer:*
+> *Your answer:*cust_no must remain a foreign key in the order table because the customer who places the order is not always the same as the registered owner of the vehicle. The licence plate only identifies the owner, but workshops often need to record who actually requested and authorized the repair.
+
+A realistic scenario is when the workshop services company or fleet vehicles. The car may be owned by the company, but different employees bring it in for maintenance. The licence plate would only point to the company as the owner, while the workshop must store which specific employee placed the order, approved the work, and should be contacted.
+
+Therefore, the direct relationship order → customer is essential and cannot be removed.
 
 **Question 2.2:** Is the schema after the 3NF decomposition also in BCNF?
 Justify your answer using the definition: for every non-trivial FD $X \rightarrow Y$,
 $X$ must be a superkey.
 
-> *Your answer:*
+> *Your answer:*Yes, the schema after the 3NF decomposition is also in BCNF.  
+For every relation, all non-trivial functional dependencies have a left-hand side that is a superkey:
+
+In customer(cust_no, cust_name, cust_city), the only non-trivial FDs are cust_no → cust_name, cust_city, and cust_no is the primary key.
+
+In vehicle(plate, make, model, year, cust_no), the FD plate → make, model, year, cust_no holds, and plate is the primary key.
+
+In mechanic(mech_id, mech_name, hourly_rate), the FD mech_id → mech_name, hourly_rate holds, and mech_id is the primary key.
+
+In order(order_no, date, plate, cust_no), the FD order_no → date, plate, cust_no holds, and order_no is the primary key.
+
+In work_item(order_no, item_no, mech_id, description, hours), the FD (order_no, item_no) → mech_id, description, hours holds, and (order_no, item_no) is the primary key.
+Since in each case the determinant of every non-trivial FD is a superkey, the schema is in BCNF.
 
 **Question 2.3:** The hourly rate of a mechanic is stored in `mechanic`. If a
 mechanic changes their rate during the year, what problem arises for already
 completed orders? How could the schema be extended to correctly record
 historical hourly rates?
 
-> *Your answer:*
+> *Your answer:*If a mechanic changes their hourly rate during the year, the problem is that all previously completed orders would incorrectly show the new rate instead of the rate that was valid when the work was done. This makes it impossible to reconstruct past invoices accurately and leads to incorrect historical accounting.
+
+To preserve correct historical pricing, the schema can be extended with a separate table that records rate changes over time, for example:  
+(mech_id, valid_from, valid_to, hourly_rate).
+Each work item would then reference the rate that was valid on the date of the order, ensuring that past orders always reflect the correct historical hourly rate.
 
 ---
 
