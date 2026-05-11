@@ -99,8 +99,8 @@ Read the table carefully and describe one concrete example of each:
    deleted entirely?
 
 > *Your answers:*Update anomaly: if Huber increases his hourly rate, all rows where he appears must be updated(for example, the two rows of order 1001 and the row of order 1003).Otherwise , some rows would contain the old rate while others would contain the new one.
->Insert anomaly: No mechanic cannot be added before they have worked on their first order, because thre is no separate table to store mechanics. You would have to invent an OrderNo, a Customer, and a car just to insert them.
->Delete anomaly: If order 1002 ist deleted , all information about customer K02(Novak),their city ,their car (a 2020 Ford Focus), and the fact that Schulz worked on it is lost permantly. 
+> Insert anomaly: No mechanic cannot be added before they have worked on their first order, because thre is no separate table to store mechanics. You would have to invent an OrderNo, a Customer, and a car just to insert them.
+> Delete anomaly: If order 1002 ist deleted , all information about customer K02(Novak),their city ,their car (a 2020 Ford Focus), and the fact that Schulz worked on it is lost permantly. 
 
 ### Task 1b – Write Down Functional Dependencies
 
