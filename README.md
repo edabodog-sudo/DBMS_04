@@ -188,7 +188,10 @@ Examine `order` and `vehicle` for transitive dependencies.
 State your conclusion: are all five relations from Task 2a already in 3NF?
 If not, perform the missing decomposition.
 
-> *Your analysis and any further decomposition:*
+> *Your analysis and any further decomposition:*After the 2NF decomposition, the transitive dependencies have already been removed.
+In the order relation, cust_name and cust_city are no longer present, so the transitive dependency order_no → cust_no → cust_city is eliminated.
+In the vehicle relation, plate determines all other attributes directly, and there is no transitive dependency involving cust_no.
+Therefore, all five relations are already in 3NF, and no further decomposition is needed.
 
 ### Task 2c – Verify Losslessness
 
