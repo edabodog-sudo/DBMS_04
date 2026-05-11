@@ -203,7 +203,12 @@ $$R_1 \cap R_2 \rightarrow R_1 \setminus R_2 \quad \text{or} \quad R_1 \cap R_2 
 Name the shared attributes, state the FD you rely on, and conclude whether the
 decomposition is lossless.
 
-> *Your verification:*
+> *Your verification:*Shared attributes: {plate, cust_no}
+FD used: plate → make, model, year
+Verification: Since the common attribute plate functionally determines all attributes in vehicle that are not in order, the condition
+(R₁ ∩ R₂) → (R₂ \ R₁)
+is satisfied.
+>  The decomposition is lossless.
 
 ### Questions for Task 2
 
