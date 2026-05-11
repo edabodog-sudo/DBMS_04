@@ -135,12 +135,12 @@ OrderNo → Plate
 respect to the primary key `(OrderNo, ItemNo)`? Justify your answer using the
 definition from Lecture 04.
 
-> *Your answer:*
+> *Your answer:*CustNo → CustCity is a partial dependency, because CustCity depends on only part of the composite primary key (OrderNo, ItemNo), not on the whole key.
 
 **Question 1.2:** Identify a transitive dependency in the flat table and explain
 why it violates 3NF.
 
-> *Your answer:*
+> *Your answer:*A transitive dependency is OrderNo → CustCity, because OrderNo determines CustNo, and CustNo determines CustCity. This violates 3NF because a non-key attribute (CustCity) depends on another non-key attribute (CustNo) instead of depending directly on a key.
 
 **Question 1.3:** Compute the attribute closure $\{\mathrm{OrderNo}\}^+$ using
 your FD list. Is `OrderNo` alone a superkey of the flat table?
