@@ -535,7 +535,11 @@ git commit -m "feat: DDL and sample data for normalized workshop schema"
 Justify both choices in terms of the domain — what does it mean for the
 business if an order is deleted versus if a customer is deleted?
 
-> *Your answer:*
+> *Your answer:*ON DELETE CASCADE for work_item.order_no:  
+If an order is deleted, the entire repair job is considered cancelled or removed from the system. Work items cannot exist without their order, so they must be deleted automatically. Cascading the deletion keeps the data consistent.
+
+ON DELETE RESTRICT for vehicle.cust_no:  
+A customer cannot be deleted while they still own vehicles. Deleting the customer would leave vehicles without an owner, which makes no sense in the business domain. Restricting the deletion protects the integrity of the data.
 
 **Question 4.2:** Test referential integrity by running:
 
@@ -547,7 +551,18 @@ INSERT INTO work_item VALUES (9999, 1, 3, 'Ghost item', 1.0);
 What error do you get? What does this tell you about the difference between
 a constraint declared in DDL and one that is actually enforced at runtime?
 
-> *Your answer:*
+> *Your answer:*yoou get an error similar to:FOREIGN KEY constraint failed. The value order_no = 9999 does not exist in the order table, so SQLite refuses to insert the row.
+
+This demonstrates an important difference:
+
+A constraint declared in the DDL (like a FOREIGN KEY) is only a definition of the rule.
+
+A constraint enforced at runtime is the database actually checking the rule when data is inserted, updated, or deleted.
+
+If foreign key enforcement is turned off (or not supported), the database might accept invalid data even if the DDL declares constraints.
+But when enforcement is ON, SQLite actively prevents inconsistent or impossible data from entering the system..
+> 
+
 
 **Question 4.3:** Test the CHECK constraint:
 
@@ -557,7 +572,11 @@ INSERT INTO work_item VALUES (1001, 3, 3, 'Invalid', -0.5);
 
 What happens? What would happen if the CHECK constraint were missing?
 
-> *Your answer:*
+> *Your answer:*SQLite returns an error such as: CHECK constraint failed: hours > 0.This happens because the value hours = -0.5 violates the CHECK constraint defined in the table (hours > 0). SQLite therefore refuses to insert the invalid row.
+
+If the CHECK constraint were missing:  
+The database would accept the negative value without complaint. This would allow impossible or nonsensical data (negative work hours) to enter the system, which could later cause incorrect calculations, billing errors, or inconsistent business logic.
+
 
 ---
 
