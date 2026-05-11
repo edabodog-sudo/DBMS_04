@@ -170,7 +170,10 @@ then fill in the table below.
 Check: In every relation, does each non-key attribute depend on the **complete**
 primary key?
 
-> *Your check:*
+> *Your check:*In every relation, each non‑key attribute depends on the full primary key.
+All partial dependencies have been removed: customer data depends only on cust_no, vehicle data depends only on plate, mechanic data depends only on mech_id, and order data depends only on order_no.
+In the work_item relation, all attributes depend on the full composite key (order_no, item_no).
+Therefore, all relations are in 2NF.
 
 ### Task 2b – Decompose into 3NF
 
