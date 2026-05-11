@@ -594,7 +594,19 @@ Write the relational algebra expression first (in words or formal notation),
 then the SQL query.
 
 ```sql
--- Query 5a: insert here
+-- Query 5a: insert here: 
+SELECT 
+    o.order_no,
+    o.date,
+    o.plate,
+    w.description,
+    w.hours
+FROM customer c
+JOIN "order" o ON c.cust_no = o.cust_no
+JOIN work_item w ON o.order_no = w.order_no
+WHERE c.cust_name = 'Berger, Franz'
+ORDER BY o.date, w.item_no;
+
 ```
 
 <details>
@@ -609,7 +621,18 @@ order 1003 (BMW 320i, 2026-03-12).
 `work_item`). In what order would the query optimizer ideally perform the joins —
 and why does the join order not affect the *result*, but does affect *performance*?
 
-> *Your answer:*
+> *Your answer:*The optimizer should start with the most selective tables:
+
+filter the customer,
+
+join to their orders,
+
+join matching work_items,
+
+finally join vehicle.
+
+The join order does not change the result because joins are associative and commutative in relational algebra.
+But it does affect performance, since different orders produce very different intermediate table sizes, and a good optimizer tries to reduce data early.
 
 ---
 
