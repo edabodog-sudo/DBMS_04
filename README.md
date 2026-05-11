@@ -113,7 +113,21 @@ Hints:
 - What does a single mechanic ID determine?
 - What only follows from the combination `(OrderNo, ItemNo)`?
 
-> *Your FD list:*
+> *Your FD list:*CustNo → CustName
+CustNo → CustCity
+
+Plate → Make
+Plate → Model
+Plate → Year
+
+MechId → MechN
+
+OrderNo → Date
+OrderNo → CustNo
+OrderNo → Plate
+
+(OrderNo, ItemNo) → Date, CustNo, CustName, CustCity, Plate, Make, Model, Year, MechId, MechN
+
 
 ### Questions for Task 1
 
