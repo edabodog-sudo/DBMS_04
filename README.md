@@ -687,10 +687,25 @@ Use a set-difference approach with `EXCEPT` and also write an alternative using
 
 ```sql
 -- Variant 1: EXCEPT
--- Query 5c-1: insert here
+-- Query 5c-1: insert here : 
+SELECT plate, model
+FROM vehicle
+EXCEPT
+SELECT v.plate, v.model
+FROM vehicle v
+JOIN "order" o ON v.plate = o.plate;
+
 
 -- Variant 2: NOT EXISTS
--- Query 5c-2: insert here
+-- Query 5c-2: insert here : 
+SELECT v.plate, v.model
+FROM vehicle v
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM "order" o
+    WHERE o.plate = v.plate
+);
+
 ```
 
 <details>
@@ -711,7 +726,8 @@ After that, the query should return `BOT-ZZ 1 | Yaris`.
 always produce the same result. Are there situations where one approach should
 be preferred in practice? Consider readability and extensibility.
 
-> *Your answer:*
+> *Your answer:*Use EXISTS / NOT EXISTS for clarity and when queries grow more complex;
+use EXCEPT when expressing a clean set difference between two simple result sets.
 
 ---
 
