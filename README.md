@@ -672,7 +672,8 @@ ORDER BY total_hours DESC;
 What would `COUNT(*)` count instead, and why would the result differ in this
 case?
 
-> *Your answer:*
+> *Your answer:*COUNT(*) counts items,
+COUNT(DISTINCT order_no) counts orders — and these are not the same when an order contains multiple work items.
 
 ---
 
