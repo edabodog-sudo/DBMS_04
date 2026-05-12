@@ -1,3 +1,4 @@
+
 # DBMS_04 – Normalization in Practice: From Plain Text to DDL
 
 **Module:** Databases · THGA Bochum  
@@ -46,7 +47,8 @@ git --version
 > **Screenshot 1:** Take a screenshot of your terminal showing all three
 > successful version checks and insert it here.
 >
-> `[insert screenshot]`
+> `[insert screenshot]`<img width="1227" height="697" alt="DBMS4" src="https://github.com/user-attachments/assets/ed5bf0b7-58b9-41e3-ae30-2dbee5be49c6" />
+
 
 ---
 
@@ -358,7 +360,8 @@ scp <username>@<server>:/path/to/DBMS_04/schema.svg ~/Downloads/schema.svg
 > **Screenshot 2:** Take a screenshot showing the rendered diagram with all
 > five entities and their relationships.
 >
-> `[insert screenshot]`
+> `[insert screenshot]`<img width="1528" height="852" alt="Screenshot 2026-05-12 000310" src="https://github.com/user-attachments/assets/122e3a62-ef7a-41ae-a1de-addc81e86134" />
+
 
 ### Task 3c – Commit
 
@@ -459,7 +462,8 @@ sqlite3 workshop.db ".tables"
 
 > **Screenshot 3:** Take a screenshot showing the `.tables` output.
 >
-> `[insert screenshot]`
+> `[insert screenshot]`<img width="682" height="87" alt="Screenshot 2026-05-12 003409" src="https://github.com/user-attachments/assets/59069ffe-c209-4540-bad0-5768e2f01ade" />
+
 
 ### Task 4c – Insert Sample Data
 
@@ -788,7 +792,8 @@ ADD COLUMN status TEXT CHECK (status IN ('open', 'completed')) DEFAULT 'open';Th
 > **Screenshot 4:** Take a screenshot showing the output of Query 5b directly
 > in `sqlite3` (with `.headers on` and `.mode column` activated).
 >
-> `[insert screenshot]`
+> `[insert screenshot]`<img width="603" height="390" alt="Screenshot 2026-05-12 131110" src="https://github.com/user-attachments/assets/ee00e54d-02b9-4a48-914b-b47eefcb1ab4" />
+
 
 ---
 
